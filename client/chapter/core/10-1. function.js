@@ -61,6 +61,7 @@ console.log(result);
 function rem(pxValue, base = 16){
 
   if(!pxValue) throw new Error('rem함수의 첫번째 인수는 필수 입력 값입니다.')
+
   typeof pxValue === 'string' && (pxValue = parseInt(pxValue, 10));
 
   /* if(typeof pxValue === 'string'){
@@ -70,6 +71,7 @@ function rem(pxValue, base = 16){
   return `${pxValue / base}rem`
 }
 
+rem('15')
 /* 
 1. function name
 2. validation
