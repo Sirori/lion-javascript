@@ -2,7 +2,9 @@
 /* Do While Loop                                                          */
 /* ---------------------------------------------------------------------- */
 
-let i = 0;
+/* const { doc } = require("prettier"); */
+
+/* let i = 0;
 
 do{
 
@@ -12,7 +14,7 @@ do{
     console.log(`${i}번째 실행`)
   }
   i++;
-}while(i < 10)
+}while(i < 10) */
 
 // do ~ while 문 (역순환)
 // - prompt 창을 띄워 사용자로 하여금 순환 횟수를 요청
@@ -21,7 +23,7 @@ do{
 //   '최초 실행된 메시지입니다. 이 메시지는 조건이 거짓이어도 볼 수 있습니다.' 출력
 // - 순환 중단
 
-let repeat = prompt('순환횟수를 입력하세요', '');
+/* let repeat = prompt('순환횟수를 입력하세요', '');
 
 do{
   console.log(repeat);
@@ -30,7 +32,45 @@ do{
     break;
   }
   repeat--;
-}while(repeat)
+}while(repeat) */
 
 // do ~ while 문 (순환)
 // - 위 do ~ while 문을 순방향으로 순환되도록 설정
+
+let first = document.querySelector('.first');
+let second = document.querySelector('.second');
+
+// first = first.nextSibling.nextSibling.nextSibling.nextSibling
+
+// do{
+//   first = first.nextSibling;
+// }while(first.nodeType !== document.ELEMENT_NODE);
+
+// //반복문 멈추는 시점 => 무한루프
+
+// console.log(first);
+
+function next(node){
+  do{
+    node = node.nextSibling;
+  }while(node.nodeType !== 1)
+
+  return node;
+}
+
+function prev(node){
+  do{
+    node = node.previousSibling;
+  }while(node.nodeType !== 1)
+
+  return node;
+}
+
+const sec = next(first);
+const fir = prev(second);
+
+console.log(sec);
+
+console.log(fir);
+
+//로직 실행
