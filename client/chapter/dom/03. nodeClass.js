@@ -55,12 +55,16 @@ console.log(first.tagName === 'SPAN');
 /* 노드 콘텐츠 읽기/쓰기 ---------------------------------------------------- */
 
 // - innerHTML
-first.innerHTML = 'helloooooo';
+first.innerHTML = '<div>안녕!</div>'
 
 // * 기존 내용 삭제
+first.innerHTML = ''
+
 // * 기존 내용과 새로운 내용을 합친 새로운 내용을 씀
+first.innerHTML += '<div>안녕!</div>'
 
 // - textContent
+console.log(first.textContent = 'hola!');
 // * 요소 내의 텍스트에 접근
 // * 태그는 제외하고 오로지 텍스트만 추출
 
@@ -68,5 +72,17 @@ first.innerHTML = 'helloooooo';
 /* hidden -------------------------------------------------------------- */
 
 // - hidden
-// * hidden은 HTML 속성으로, DOM 프로퍼티로 사용 가능
+// * hidden은 HTML 속성으로, DOM 프로퍼티로 사용 가능(html속성과 dom 프로퍼티 1:1로 매칭이됨)
 // * hidden 프로퍼티는 기술적으로 style="display:none"와 동일
+
+const h1 = getNode('h1');
+
+h1.hidden = true;
+
+let toggle = false;
+
+setInterval(()=>{
+  h1.hidden = toggle? false:true;
+
+  toggle = !toggle
+}, 1000);
