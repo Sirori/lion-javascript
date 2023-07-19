@@ -7,7 +7,7 @@
 
 // - document.createElement(tagName) – 태그 이름을 사용해 새로운 요소 생성
 // - document.createTextNode(value) – 새로운 텍스트 노드 생성
-// - element.cloneNode(deep) – 요소 복제. deep==true일 경우 모든 자손 요소도 복제
+// - element.cloneNode(deep) – 요소 복제. deep==true일 경우 모든 자손 요소도 복제  
 
 // let div = document.createElement('div');
 // div.className = 'box';

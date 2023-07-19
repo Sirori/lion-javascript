@@ -68,7 +68,7 @@ function setAttr(node, prop, value){
   }
 
   node.setAttribute(prop, value);
-}
+} 
 
 // function attr(node, prop, value){
 //   // if(!value){

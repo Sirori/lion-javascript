@@ -36,7 +36,7 @@ addClass('.first', 'hello');
 
 /* 스타일 변경 방법 --------------------------------------------------------- */
 
-first.style.backgroundColor = 'orange'; // setter
+first.style.backgroundColor = 'orange'; // setter  
 console.log(first.style.backgroundColor); // getter
 
 // - style.cssText - "style" 속성 전체에 대응하므로 스타일 전체에 대한 문자열 저장

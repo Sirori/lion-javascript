@@ -73,7 +73,7 @@ console.log(first.textContent = 'hola!');
 
 // - hidden
 // * hidden은 HTML 속성으로, DOM 프로퍼티로 사용 가능(html속성과 dom 프로퍼티 1:1로 매칭이됨)
-// * hidden 프로퍼티는 기술적으로 style="display:none"와 동일
+// * hidden 프로퍼티는 기술적으로 style="display:none"와 동일 
 
 const h1 = getNode('h1');
 
