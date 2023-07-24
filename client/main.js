@@ -62,6 +62,13 @@ function handleSubmit(e) {
   insertLast(resultArea, pick);
 }
 
+// 이름을 제대로 입력했을 때 클립보드에 복사될 수 있도록
+// let state =false;
+
+// state = true;
+
+// if(state){ ...logic}
+
 function handleCopy(){
   const text = resultArea.textContent;
   copy(text).then(()=>{
