@@ -1,9 +1,5 @@
-import { xhr } from "./lib/index.js";
+import { tiger } from "./lib/index.js";
 
-// xhr.get('https://www.naver.com')
-// .then((res)=>{
+const data = tiger.get('https://jsonplaceholder.typicode.com/users')
 
-// })
-// .catch((err)=>{
-//   err
-// })
+console.log(data);
