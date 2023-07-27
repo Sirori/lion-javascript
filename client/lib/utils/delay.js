@@ -2,14 +2,14 @@ import { getNode } from "../dom/getNode.js";
 import { insertLast } from "../dom/insert.js";
 import { xhrPromise } from "./xhr.js";
 
-function delay(callback, timeout=1000){
+
+function delay(callback,timeout=1000){
   setTimeout(callback,timeout);
 }
 
+
 const first = getNode('.first');
 const second = getNode('.second');
-
-
 
 
 
@@ -22,90 +22,70 @@ const second = getNode('.second');
 //     delay(()=>{
 //       console.log(3);
 //       first.style.top = '0';
+//       second.style.top = '0';
 //     })
+//     second.style.top = '100px';
+//     console.log('b');
 //   })
-//   second.style.top = '100px'
-//   console.log('b');
 // })
 
 
+// delayP 함수를 실행하면 리턴되는 값이 promise 객체입니다.
 
-// function delayP(
-//   shouldReject =  false, //shouldReject 부분 이해 안감
-//   timeout=1000, 
-//   data='성공!', 
-//   errorMessage = '알 수 없는 오류가 발생했습니다.'
-//   ){
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       if(!shouldReject){
-//         resolve(data)
-//       }else{
-//         reject({message: errorMessage});
-//       }
-//     }, timeout);
-//   })
-// }
-
-// delayP(true, 1000, 'success', '404 not found')
-// .then((res)=>{
-//   console.log(res);
-// })
-
-// delayP()
-// .then(
-//   ({name,age})=>{
-//     console.log( name );
-//   }
-// )
-// .catch((err)=>{
-//   console.log( err );
-// })
-
-// 객체 합성 mixin
+//  객체 합성 mixin 
 
 const defaultOptions = {
-  shouldReject: false,
-  timeout: 1000,
-  data: '성공!',
-  errorMessage: '알 수 없는 오류가 발생했습니다.'
+  shouldReject:false,
+  timeout:1000,
+  data:'성공!',
+  errorMessage:'알 수 없는 오류가 발생했습니다.'
 }
 
-function delayP(options){
-
-  let config = {...defaultOptions}
+export function delayP(options){
   
+  let config = {...defaultOptions}
+
   if(typeof options === 'number'){
     config.timeout = options;
   }
-
+  
   if(typeof options === 'object'){
-    config = {...defaultOptions, ...options}
+    config = {...defaultOptions,...options}
   }
 
-  const {shouldReject, data, errorMessage, timeout} = config;
-
+  const {shouldReject,data,errorMessage,timeout}  = config;
+  
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+
       if(!shouldReject){
         resolve(data)
       }else{
-        reject({message: errorMessage});
-      }
+        reject({message:errorMessage});
+      }  
     }, timeout);
   })
 }
 
-delayP({shouldReject: true})
+
+
+delayP({shouldReject:false})
 .then((res)=>{
-  // console.log(res);
+  // console.log( res );
 })
 .catch(({message})=>{
-  // alert(message);
+  alert(message)
 })
 .finally(()=>{
-  // console.log('어쨌든 실행됨');
+  // console.log('어쨋든 실행합니다.');
 })
+
+
+
+// console.log(2);
+// console.log(3);
+
+
 
 
 async function delayA(){
@@ -116,36 +96,54 @@ const data = await delayA();
 
 // console.log( data );
 
-async function getData(){
-  const data = xhrPromise.get('https://pokeapi.co/api/v2/pokemon/25')
-  const data1 = xhrPromise.get('https://pokeapi.co/api/v2/pokemon/35')
-  const data2 = xhrPromise.get('https://pokeapi.co/api/v2/pokemon/1')
-  const data3 = xhrPromise.get('https://pokeapi.co/api/v2/pokemon/4')
-  const data4 = xhrPromise.get('https://pokeapi.co/api/v2/pokemon/7')
-  const data5 = xhrPromise.get('https://pokeapi.co/api/v2/pokemon/10')
-  const data6 = xhrPromise.get('https://pokeapi.co/api/v2/pokemon/13')
-  
-  // data.then((res)=>{
-  //   console.log(res);
-  // })
 
-  const pokemon = await data;
-  const pokemon1 = await data1;
-  const pokemon2 = await data2;
-  const pokemon3 = await data3;
-  const pokemon4 = await data4;
-  const pokemon5 = await data5;
-  const pokemon6 = await data6;
 
-  insertLast(document.body, `<img src="${pokemon.sprites['front_default']}" alt='' />`)
-  insertLast(document.body, `<img src="${pokemon1.sprites['front_default']}" alt='' />`)
-  insertLast(document.body, `<img src="${pokemon2.sprites['front_default']}" alt='' />`)
-  insertLast(document.body, `<img src="${pokemon3.sprites['front_default']}" alt='' />`)
-  insertLast(document.body, `<img src="${pokemon4.sprites['front_default']}" alt='' />`)
-  insertLast(document.body, `<img src="${pokemon5.sprites['front_default']}" alt='' />`)
-  insertLast(document.body, `<img src="${pokemon6.sprites['front_default']}" alt='' />`)
+// async - 함수가 promise 객체를 반환 하도록
+//       - await 사용 
+
+// await - 코드의 실행 흐름 제어 (멈춰)
+//       - result값 가져오기 
+
+
+async function 라면끓이기(){
+
+  delayP({data:'물넣기'}).then((res)=>{
+    console.log( res );
+  })
+
+  const 스프 = await delayP({data:'스프넣기'})
+  console.log(스프);
+
+  const 면 = await delayP({data:'면넣기'})
+  console.log(면);
+
+  const 계란 = await delayP({data:'계란넣기'})
+  console.log(계란);
+
+  const 접시 = await delayP({data:'접시'})
+  console.log(접시);
 }
 
 
-getData(data)
+// 라면끓이기()
 
+// then 결과 가져오기
+// await 결과 가져오기 
+
+async function getData(){
+
+  const data = xhrPromise.get('https://pokeapi.co/api/v2/pokemon/76')
+
+  // data.then((res)=>{
+  //   console.log( res );
+  // })
+  
+  const pokemon = await data;
+
+  console.log( pokemon.sprites['front_default'] );
+
+  insertLast(document.body,`<img src="${pokemon.sprites['front_default']}" alt="" />`)
+
+}
+
+// getData()

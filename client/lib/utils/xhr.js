@@ -1,20 +1,20 @@
+/* 
 
-import { refError } from '../error/refError.js';
-
-/* [readystate]
+[readystate]
 
 0: uninitialized
 1: loading
 2: loaded
 3: interactive
 4: complete
- */
 
+*/
+
+import { refError } from "../error/refError.js";
 
 /* callback --------------------------------------------- */
 
 // 객체 구조 분해 할당 
-
 export function xhr({ 
   method = 'GET', 
   url = '', 
@@ -86,7 +86,6 @@ xhr.get = (url,onSuccess,onFail)=>{
   })
 }
 
-
 xhr.post = (url,body,onSuccess,onFail)=>{
   xhr({
     method:'POST',
@@ -96,7 +95,6 @@ xhr.post = (url,body,onSuccess,onFail)=>{
     onFail
   })
 }
-
 
 xhr.put = (url,body,onSuccess,onFail)=>{
   xhr({
@@ -117,7 +115,11 @@ xhr.delete = (url,onSuccess,onFail)=>{
   })
 }
 
+
+
+
 /* promise API -------------------------- */
+
 
 const defaultOptions = {
   method:'GET',
@@ -130,11 +132,9 @@ const defaultOptions = {
   }
 }
 
-
 export function xhrPromise(options){
 
   // mixin 
-
   // const config = {...defaultOptions,...options}
   const {method,url,body,errorMessage,headers} = Object.assign({},defaultOptions,options)
 
@@ -142,14 +142,10 @@ export function xhrPromise(options){
 
 
   const xhr = new XMLHttpRequest();
-  
   xhr.open(method,url);
-
-
   Object.entries(headers).forEach(([key,value])=>{
     xhr.setRequestHeader(key,value);
   })
-
   
   xhr.send(JSON.stringify(body))
 
@@ -167,40 +163,30 @@ export function xhrPromise(options){
 }
 
 
-// xhrPromise({
-//   url: 'https://jsonplaceholder.typicode.com/users'
-// })
-// .then((res)=>{
-//   res.forEach((item)=>{
-//     console.log(item);
-//   })
-// })
-
 xhrPromise.get = (url)=>{
-  return xhrPromise({
-    url
-  })
+  return xhrPromise({ url })
 }
 
-xhrPromise.post = (url, body)=>{
+xhrPromise.post = (url,body)=>{
   return xhrPromise({
     url,
     body,
-    method: 'POST'
+    method:'POST'
   })
 }
 
 xhrPromise.delete = (url)=>{
   return xhrPromise({
     url,
-    method: "DELETE"
+    method:'DELETE'
   })
 }
 
-xhrPromise.put = (url, body)=>{
+
+xhrPromise.put = (url,body)=>{
   return xhrPromise({
     url,
     body,
-    method: "PUT"
+    method:'PUT'
   })
 }

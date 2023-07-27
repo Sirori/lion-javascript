@@ -118,16 +118,3 @@ export function attr(node, prop, value) {
 
   return !value ? getAttr(node, prop) : setAttr(node, prop, value);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
